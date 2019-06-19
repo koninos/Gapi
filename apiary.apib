@@ -1,36 +1,117 @@
 FORMAT: 1A
-HOST: ```TODO```
+HOST: https://studio.justad.mobi
 
-# Glispa Create Reporting API
 
-The Host url for the reporting API is ```TODO```
+# Glispa Create Reporting API v0.1
+
+The Host url for the reporting API is https://studio.justad.mobi
+
+Any request is prefixed with the current version /v0.1.  
+NOTE: Both http & https traffic is allowed but we highly encourage to use https.
 
 ## Requests
 
 All requests "MUST" use `GET` Method.
 
+For example, given a `_id=6033`, `fromdate=2018-06-19`, `todate=2019-06-20`, `report=daily` and an `timezone=Europe/Athens` it looks like:
+```
+GET https://studio.justad.mobi/v0.1/Management/index.php
+?r=campaign/downloadJSON
+&_id=6033
+&fromdate=2018-06-19
+&todate=2019-06-20
+&report=daily
+&timezone=Europe/Athens
+```
+
 ## Response
 
 + Response 200 (application/json)
 
+    + Body 
+    ```
         [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
+          {
+            "campaign_id": 6023,
+            "campaign_name": "Summer campaign",
+            "create_date": "21_9_2018",
+            "start_date": "21_9_2018",
+            "end_date": "21_9_2019",
+            "type": "detailed",
+            "ads": [
+              {
+                "ad_id": 123123,
+                "ad_name": "test_ad",
+                "ad_format": "Interstitial",
+                "stats": [
+                  {
+                    "timestamp": 12312323,
+                    "viral": 0,
+                    "served_impressions": 23232,
+                    "served_variations": 26932,
+                    "impressions": 343434,
+                    "started_impressions": 15,
+                    "unique_impressions": 154,
+                    "first_interaction": 13,
+                    "time_spent": 12.45,
+                    "call_duration": 0,
+                    "ctr": 0.24,
+                    "navigation_rate": 0.12,
+                    "engagement_rate": 1,
+                    "open_url": 13,
+                    "call_phone": 0,
+                    "send_sms": 0,
+                    "add_to_calendar": 0,
+                    "open_map": 0,
+                    "google_search": 0,
+                    "download_file": 0,
+                    "download_app": 0,
+                    "open_facebook": 0,
+                    "open_twitter": 0,
+                    "send_email": 0,
+                    "trackable_lab": 0,
+                    "mf_ufcu": 15,
+                    "mraid_not_found": 313,
+                    "mf_close": 137,
+                    "video_started": 0,
+                    "video_first_quartile": 0,
+                    "video_midpoint": 0,
+                    "video_third_quartile": 0,
+                    "video_completed": 0,
+                    "video_stopped": 0
+                  }
                 ]
-            }
+              }
+            ]
+          }
         ]
+    ```
+### First level
+
+Currently, all requests result in a JSON response and `Content-Type: application/json; charset-8` response header. 
+First level properties of the response are:
+//TODO
+- `data`, an array with objects containing datapoints of result.
+
+### Data points
+//TODO
+More specific datapoints in  `data` array have the following properties:
+- `timestamp` the timestamp of the datapoint in UTC timezone and ISO-8601 format
+- `result` the actual values of the response containing:
+  - `earnings` (float)
+  - `impressions` (int)
+  - `ecpm` (float)
+  - `ad_requests` (int)
+  - `clicks` (int)
+  - `ctr` (float)
+  - `fill_rate` (float)
+  - `render_rate` (float)
+- `dimension` the dimension that describe this particular datapoint containing:
+  - `app_id` (string)
+  - `adunit_id` (string)
+  - `country` (string)
+  - `publisher_id` (string)
+
+### Date values
+
+All date and time values in response are `UTC` and use *[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)* standard and the format is: `YYYY-MM-DDTHH:mm:ss.sssZ`.
