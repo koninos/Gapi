@@ -13,15 +13,17 @@ NOTE: Both http & https traffic is allowed but we highly encourage to use https.
 
 All requests "MUST" use `GET` Method.
 
++ Parameters
+    + _id: `1` (string) - The id of the Campaign.
+    + fromdate: `2018-06-19` (timestamp) - The campaign's starting date.
+    + todate: `2018-06-20` (timestamp) - The campaign's ending date.
+    + report: `daily` (string) - Type of the reporting (daily, etc).
+    + timezone: `Europe/Athens` (string) - The desired timezone of the generated report.
+
 For example, given a `_id=6033`, `fromdate=2018-06-19`, `todate=2019-06-20`, `report=daily` and an `timezone=Europe/Athens` it looks like:
 ```
-GET https://studio.justad.mobi/v0.1/Management/index.php
-?r=campaign/downloadJSON
-&_id=6033
-&fromdate=2018-06-19
-&todate=2019-06-20
-&report=daily
-&timezone=Europe/Athens
+GET 
+https://studio.justad.mobi/v0.1/Management/index.php?r=campaign/downloadJSON&_id=6033&fromdate=2018-06-19&todate=2019-06-20&report=daily&timezone=Europe/Athens
 ```
 
 ## Response
