@@ -12,14 +12,14 @@ Date and time values in response are *[ISO-8601](https://en.wikipedia.org/wiki/I
 
 # Group Report request
 
-## Examples [/Management/index.php?r=campaign/reporting&_id={_id}&fromdate={fromdate}&todate={todate}&report={report}&timezone={timezone}]
+## Examples [/Management/index.php?r=brand/reporting&_id={_id}&from_date={from_date}&to_date={to_date}&report={report}&timezone={timezone}]
 
 ### Sample Request [GET]
 
 + Parameters
-    + _id: `6033` (string, required) - The id of the Campaign.
-    + fromdate: `2018-06-19` (string, required) - The campaign's starting date.
-    + todate: `2018-06-20` (string) - The campaign's ending date.
+    + _id: `6036872433` (string, required) - The id of the Campaign.
+    + from_date: `2018-06-19` (string, required) - The campaign's starting date.
+    + to_date: `2018-06-20` (string) - The campaign's ending date.
     + report: `daily` (enum) - Type of the reporting (daily, etc).
         + Members
             + `daily`
@@ -451,9 +451,9 @@ Date and time values in response are *[ISO-8601](https://en.wikipedia.org/wiki/I
 + Response 200 (application/json; charset=utf-8)
 
         {
-            "data": [{
-                "campaign_id": "6033",
-                "campaign_name": "Summer campaign",
+            "campaigns": [{
+                "id": "6033",
+                "name": "Summer campaign",
                 "create_date": "2019-06-01T00:00:00.000Z",
                 "start_date": "2019-06-01T00:00:00.000Z",
                 "end_date": "2020-06-01T00:00:00.000Z",
