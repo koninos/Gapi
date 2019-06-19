@@ -12,7 +12,7 @@ NOTE: Both http & https traffic is allowed but we highly encourage to use https.
 
 All requests "MUST" use `GET` Method.
 
-For example, given a `_id=6033`, `fromdate=2018-06-19`, `todate=2019-06-20`, `report=daily` and an `timezone=Europe/Athens` it looks like:
+For example, given an `_id=6033`, `fromdate=2018-06-19`, `todate=2019-06-20`, `report=daily` and a `timezone=Europe/Athens` it looks like:
 ```
 GET 
 https://studio.justad.mobi/Management/index.php?r=campaign/downloadJSON&_id=6033&fromdate=2018-06-19&todate=2019-06-20&report=daily&timezone=Europe/Athens
@@ -114,7 +114,7 @@ All date and time values in response are `UTC` and use *[ISO-8601](https://en.wi
 
 ## Examples [/Management/index.php?r=campaign/downloadJSON&_id={_id}&fromdate={fromdate}&todate={todate}&report={report}&timezone={timezone}]
 
-### Unauthorized Request [GET]
+### Sample Request [GET]
 
 + Parameters
     + _id: `6033` (int) - The id of the Campaign.
