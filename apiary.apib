@@ -2,28 +2,20 @@ FORMAT: 1A
 HOST: https://studio.justad.mobi
 
 
-# Glispa Create Reporting API v0.1
+# Glispa Create Reporting API
 
 The Host url for the reporting API is https://studio.justad.mobi
 
-Any request is prefixed with the current version /v0.1.  
 NOTE: Both http & https traffic is allowed but we highly encourage to use https.
 
 ## Requests
 
 All requests "MUST" use `GET` Method.
 
-+ Parameters
-    + _id: `1` (string) - The id of the Campaign.
-    + fromdate: `2018-06-19` (timestamp) - The campaign's starting date.
-    + todate: `2018-06-20` (timestamp) - The campaign's ending date.
-    + report: `daily` (string) - Type of the reporting (daily, etc).
-    + timezone: `Europe/Athens` (string) - The desired timezone of the generated report.
-
 For example, given a `_id=6033`, `fromdate=2018-06-19`, `todate=2019-06-20`, `report=daily` and an `timezone=Europe/Athens` it looks like:
 ```
 GET 
-https://studio.justad.mobi/v0.1/Management/index.php?r=campaign/downloadJSON&_id=6033&fromdate=2018-06-19&todate=2019-06-20&report=daily&timezone=Europe/Athens
+https://studio.justad.mobi/Management/index.php?r=campaign/downloadJSON&_id=6033&fromdate=2018-06-19&todate=2019-06-20&report=daily&timezone=Europe/Athens
 ```
 
 ## Response
@@ -88,6 +80,7 @@ https://studio.justad.mobi/v0.1/Management/index.php?r=campaign/downloadJSON&_id
           }
         ]
     ```
+    
 ### First level
 
 Currently, all requests result in a JSON response and `Content-Type: application/json; charset-8` response header. 
@@ -117,3 +110,75 @@ More specific datapoints in  `data` array have the following properties:
 ### Date values
 
 All date and time values in response are `UTC` and use *[ISO-8601](https://en.wikipedia.org/wiki/ISO_8601)* standard and the format is: `YYYY-MM-DDTHH:mm:ss.sssZ`.
+# Group Report request
+
+## Examples [/Management/index.php?r=campaign/downloadJSON&_id={_id}&fromdate={fromdate}&todate={todate}&report={report}&timezone={timezone}]
+
+### Unauthorized Request [GET]
+
++ Parameters
+    + _id: `6033` (int) - The id of the Campaign.
+    + fromdate: `2018-06-19` (timestamp) - The campaign's starting date.
+    + todate: `2018-06-20` (timestamp) - The campaign's ending date.
+    + report: `daily` (string) - Type of the reporting (daily, etc).
+    + timezone: `Europe/Athens` (string) - The desired timezone of the generated report.
+
++ Response 200 (application/json; charset=utf-8)
+
+    ```
+        [
+          {
+            "campaign_id": 6033,
+            "campaign_name": "Summer campaign",
+            "create_date": "21_9_2018",
+            "start_date": "19_6_2018",
+            "end_date": "20_6_2019",
+            "type": "detailed",
+            "ads": [
+              {
+                "ad_id": 123123,
+                "ad_name": "test_ad",
+                "ad_format": "Interstitial",
+                "stats": [
+                  {
+                    "timestamp": 12312323,
+                    "viral": 0,
+                    "served_impressions": 23232,
+                    "served_variations": 26932,
+                    "impressions": 343434,
+                    "started_impressions": 15,
+                    "unique_impressions": 154,
+                    "first_interaction": 13,
+                    "time_spent": 12.45,
+                    "call_duration": 0,
+                    "ctr": 0.24,
+                    "navigation_rate": 0.12,
+                    "engagement_rate": 1,
+                    "open_url": 13,
+                    "call_phone": 0,
+                    "send_sms": 0,
+                    "add_to_calendar": 0,
+                    "open_map": 0,
+                    "google_search": 0,
+                    "download_file": 0,
+                    "download_app": 0,
+                    "open_facebook": 0,
+                    "open_twitter": 0,
+                    "send_email": 0,
+                    "trackable_lab": 0,
+                    "mf_ufcu": 15,
+                    "mraid_not_found": 313,
+                    "mf_close": 137,
+                    "video_started": 0,
+                    "video_first_quartile": 0,
+                    "video_midpoint": 0,
+                    "video_third_quartile": 0,
+                    "video_completed": 0,
+                    "video_stopped": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+    ```
