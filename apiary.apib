@@ -12,14 +12,15 @@ Date and time values in response are *[ISO-8601](https://en.wikipedia.org/wiki/I
 
 # Group Report request
 
-## Examples [/Management/index.php?r=campaign/reporting&id={campaign_id}&from_date={from_date}&to_date={to_date}&report={report}&timezone={timezone}]
+## Examples [/Management/index.php?r=campaign/reporting&id={campaign_id}&from_date={from_date}&to_date={to_date}&report={report}&timezone={timezone}&token={token}]
 
 ### Sample Request [GET]
 
 + Parameters
     + campaign_id: `6036872433` (string, required) - The id of the Campaign.
+    + token: `foo` (string, required) - Authentication token
     + from_date: `2018-06-19` (string, required) - The campaign's starting date.
-    + to_date: `2018-06-20` (string) - The campaign's ending date.
+    + to_date: `2018-06-20` (string, required) - The campaign's ending date.
     + report: `daily` (enum) - Type of the reporting (daily, etc).
         + Members
             + `daily`
@@ -454,9 +455,8 @@ Date and time values in response are *[ISO-8601](https://en.wikipedia.org/wiki/I
             "campaigns": [{
                 "id": "6033",
                 "name": "Summer campaign",
-                "create_date": "2019-06-01T00:00:00.000Z",
-                "start_date": "2019-06-01T00:00:00.000Z",
-                "end_date": "2020-06-01T00:00:00.000Z",
+                "from_date": "2019-06-01T00:00:00.000Z",
+                "to_date": "2020-06-01T00:00:00.000Z",
                 "report": "daily",
                 "ads": [
                   {
@@ -465,7 +465,7 @@ Date and time values in response are *[ISO-8601](https://en.wikipedia.org/wiki/I
                     "format": "Interstitial",
                     "stats": [
                       {
-                        "timestamp": "2019-06-01T00:00:00.000Z",
+                        "date": "2019-06-01T00:00:00.000Z",
                         "viral": 0,
                         "served_impressions": 23232,
                         "served_variations": 26932,
@@ -489,9 +489,9 @@ Date and time values in response are *[ISO-8601](https://en.wikipedia.org/wiki/I
                         "open_facebook": 0,
                         "open_twitter": 0,
                         "send_email": 0,
-                        "trackable_lab": 0,
+                        "trackablelab": 0,
                         "mf_ufcu": 15,
-                        "mraid_not_found": 313,
+                        "mraidnotfound": 313,
                         "mf_close": 137,
                         "video_started": 0,
                         "video_first_quartile": 0,
@@ -501,7 +501,7 @@ Date and time values in response are *[ISO-8601](https://en.wikipedia.org/wiki/I
                         "video_stopped": 0
                       },
                       {
-                        "timestamp": "2019-06-02T00:00:00.000Z",
+                        "date": "2019-06-02T00:00:00.000Z",
                         "viral": 0,
                         "served_impressions": 23232,
                         "served_variations": 26932,
@@ -527,7 +527,7 @@ Date and time values in response are *[ISO-8601](https://en.wikipedia.org/wiki/I
                         "send_email": 0,
                         "trackable_lab": 0,
                         "mf_ufcu": 15,
-                        "mraid_not_found": 313,
+                        "mraidnotfound": 313,
                         "mf_close": 137,
                         "video_started": 0,
                         "video_first_quartile": 0,
